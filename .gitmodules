@@ -1,0 +1,7 @@
+[submodule "grisette-haskell-legacy"]
+	path = grisette-haskell-legacy
+	url = https://github.com/lsrcz/grisette-haskell-legacy.git
+	branch = popl-supp
+[submodule "leanette-popl22-artifact"]
+	path = leanette-popl22-artifact
+	url = https://github.com/lsrcz/leanette-popl22-artifact.git
