@@ -134,8 +134,11 @@ COPY leanette-popl22-artifact/rosette-benchmarks-3 /workspace/leanette-popl22-ar
 COPY leanette-popl22-artifact/rosette-benchmarks-4 /workspace/leanette-popl22-artifact/rosette-benchmarks-4
 COPY leanette-popl22-artifact/interface /workspace/leanette-popl22-artifact/interface
 COPY leanette-popl22-artifact/perf /workspace/leanette-popl22-artifact/perf
-#COPY examples /workspace/examples
+COPY leanette-popl22-artifact/examples /workspace/leanette-popl22-artifact/examples
 COPY leanette-popl22-artifact/.gitignore /workspace/leanette-popl22-artifact/.gitignore
+COPY run-all.sh /workspace/run-all.sh
+COPY line-count.sh /workspace/line-count.sh
+COPY sanity-check.sh /workspace/sanity-check.sh
 
 RUN git config --global user.name "Your Name"
 RUN git config --global user.email yourname@example.com
