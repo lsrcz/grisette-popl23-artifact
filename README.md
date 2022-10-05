@@ -5,6 +5,13 @@ This repo is the artifact associated with the POPL 2023 submission "Symbolic Com
 The artifact is packaged as a docker image. Please refer to the [hardware requirements](#hardware-requirements) and [installation](#installation-and-sanity-testing) sections for the details.
 This repository contains several scripts for repreducing the paper results, as well as the source code of Grisette as a submodule. We also included a repository adapted from [Leanette's POPL'22 artifact](https://github.com/uw-unsat/leanette-popl22-artifact/) as a submodule for the Rosette 3 and Rosette 4 benchmarks. We will compare Grisette with them.
 
+Note that as Grisette and Leanette artifact are included as a submodule, for the links in the README to work, you need to clone the repository with the `--recursive` flag and try them locally.
+They will **not** work on GitHub.
+
+```bash
+$ git clone --recursive https://github.com/lsrcz/grisette-popl23-artifact.git
+```
+
 ## List of Claims
 ### Statistics of the Benchmarks
 We ported the Rosette benchmarks to Grisette, and collected their statistics.
