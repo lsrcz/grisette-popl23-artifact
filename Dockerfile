@@ -128,6 +128,12 @@ RUN cd grisette-haskell-legacy \
   && stack build \
   && cd ..
 
+RUN cd grisette-haskell-legacy \
+  && stack clean \
+  && PATH="$(pwd)/scripts/solvers:$PATH" stack test \
+  && stack build \
+  && cd ..
+
 #COPY README.md /workspace/README.md
 #COPY diff-testing /workspace/diff-testing
 COPY leanette-popl22-artifact/rosette-benchmarks-3 /workspace/leanette-popl22-artifact/rosette-benchmarks-3

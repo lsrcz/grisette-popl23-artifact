@@ -26,10 +26,11 @@ $ git clone --recursive https://github.com/lsrcz/grisette-popl23-artifact.git
    * [Evaluation of Grisette's performance](#evaluation-of-grisettes-performance)
    * [Comparing the Default Error Encoding with the CBMC Error Encoding](#comparing-the-default-error-encoding-with-the-cbmc-error-encoding)
    * [Evaluation of the Effectiveness of Memoization](#evaluation-of-the-effectiveness-of-memoization)
-* [Hardware Requirements](#hardware-requirements)
-* [Installation and Sanity Testing](#installation-and-sanity-testing)
+* [Download, Installation and Sanity Testing](#download-installation-and-sanity-testing)
+   * [Hardware Requirements](#hardware-requirements)
+   * [Download and Installation](#download-and-installation)
    * [Sanity Check](#sanity-check)
-* [Reproducing the Results](#reproducing-the-results)
+* [Evaluation Instructions](#evaluation-instructions)
    * [Statistics of the Benchmarks (Table 1)](#statistics-of-the-benchmarks-table-1)
    * [Porting Cosette](#porting-cosette-1)
    * [Reproducing Table 2-5](#reproducing-table-2-5)
@@ -87,7 +88,9 @@ This corresponds to the Section 5.5 and Table 5 in the paper.
 
 There are several benchmarks with the suffix `-nomemo` in the [grisette-haskell-legacy/grisette-benchmarks](grisette-haskell-legacy/grisette-benchmarks) folder. The memoized version are in the subfolders without the suffix `-memo`.
 
-## Hardware Requirements
+## Download, Installation and Sanity Testing
+
+### Hardware Requirements
 
 To use this artifact, you will need a x86-64 machine capable of running Docker with at least 16GB of RAM.
 The docker image would be about 10GB in size.
@@ -99,7 +102,7 @@ The results shown in the paper were obtained on a physical machine running Ubunt
 The results you obtain may also vary from ours depending on your hardware and software configuration.
 For example, we observed a significant performance degradation of Grisette when running the benchmarks on a virtual machine on i7-1185G7 where AVX/AVX2 are not available due to a conflict between VirtualBox and WSL2 (Windows Subsystem of Linux 2).
 
-## Installation and Sanity Testing
+### Download and Installation
 
 To use this artifact, you will need to install Docker on your machine.
 See [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/) for the installation instructions.
@@ -113,6 +116,8 @@ $ docker pull lsrcz/grisette-popl23-artifact:latest
 # Run Image
 $ docker run -it --name grisette-popl23-artifact lsrcz/grisette-popl23-artifact:latest
 ```
+
+The docker image is based on Ubuntu 20.04 LTS and contains all the dependencies required to run the benchmarks.
 
 You will be dropped into a bash shell inside the docker container, in the `/workspace` directory.
 There would be three scripts in the `/workspace` directory: `sanity-check.sh`, `line-count.sh` and `run-all.sh`. These would be the main scripts you would use to test your installation and reproduce the results.
@@ -147,7 +152,21 @@ raco cross: command failed
  [y -1])
 ```
 
-## Reproducing the Results
+The previous instructions should be suffice to ensure that the artifact is working correctly,
+but you can also run the test suite of Grisette on your machine by
+
+```bash
+$ cd grisette-haskell-legacy
+$ PATH=$(pwd)/scripts/solvers:$PATH stack test
+```
+
+Sometimes you may encounter bugs in GHC or stack that prevents you to run the test suite or some benchmarks. If such a case happens, you can try to clean up the build files, rebuild everything and test them:
+
+```bash
+stack clean && stack test
+```
+
+## Evaluation Instructions
 
 ### Statistics of the Benchmarks (Table 1)
 
@@ -240,7 +259,7 @@ The generated table would be in latex format and can be compiled with a latex co
 The Table 2-5 in our paper are directly copied from the generated latex code.
 
 **Expected output should looks like**:
-Note that the following output are collected from the docker container and is slightly different from the output in the paper. You should expect similar minor differences when you run the script on your system.
+Note that the following output are collected from the docker container and is slightly different from the output in the paper. You should expect similar minor differences when you run the script on your system with modern hardwares.
 
 ```latex
 \begin{tabular}{lrrrrrrrrrrrrrrrrrrrrr}
