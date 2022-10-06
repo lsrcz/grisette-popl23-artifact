@@ -1,16 +1,23 @@
 # "Symbolic Compilation as a Monadic Library: Artifact
 
-This repo is the artifact associated with the POPL 2023 submission "Symbolic Compilation as a Monadic Library". The [submitted version of the paper](popl23-paper97.pdf) is included in the artifact.
+This repo is the artifact associated with the POPL 2023 submission "Symbolic Compilation as a Monadic Library". The [submitted version of the paper](popl23-paper97.pdf) is included.
 
-The artifact is packaged as a docker image. Please refer to the [hardware requirements](#hardware-requirements) and [installation](#installation-and-sanity-testing) sections for the details.
-This repository contains several scripts for repreducing the paper results, as well as the source code of Grisette as a submodule. We also included a repository adapted from [Leanette's POPL'22 artifact](https://github.com/uw-unsat/leanette-popl22-artifact/) as a submodule for the Rosette 3 and Rosette 4 benchmarks. We will compare Grisette with them.
+The artifact has been packaged as a docker image using the [Dockerfile](Dockerfile).
+Please refer to the [hardware requirements](#hardware-requirements) and [installation](#installation-and-sanity-testing) sections for the details.
 
-Note that as Grisette and Leanette artifact are included as a submodule, for the links in the README to work, you need to clone the repository with the `--recursive` flag and try them locally.
-They will **not** work on GitHub.
+There are two submodules in this repository.
+[grisette-haskell-legacy](grisette-haskell-legacy)
+is the source code of Grisette at the time we evaluated our system.
+As a base line, we also included a repository adapted from [Leanette's POPL'22 artifact](https://github.com/uw-unsat/leanette-popl22-artifact/) as a submodule at [leanette-popl22-artifact](leanette-popl22-artifact) for the Rosette 3 and Rosette 4 benchmarks.
+
+Note that as Grisette and Leanette artifacts are included as submodules, the links in the README will **not** work on GitHub,
+and you need to clone the repository with the `--recursive` flag and try them locally.
 
 ```bash
 $ git clone --recursive https://github.com/lsrcz/grisette-popl23-artifact.git
 ```
+
+**The current version of Grisette is available at [https://github.com/lsrcz/grisette](https://github.com/lsrcz/grisette) with BSD3 license.**
 
 ## List of Claims
 ### Statistics of the Benchmarks
