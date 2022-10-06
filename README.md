@@ -19,6 +19,22 @@ $ git clone --recursive https://github.com/lsrcz/grisette-popl23-artifact.git
 
 **The current version of Grisette is available at [https://github.com/lsrcz/grisette](https://github.com/lsrcz/grisette) with BSD3 license.**
 
+## Table of Contents
+* [List of Claims](#list-of-claims)
+   * [Statistics of the Benchmarks](#statistics-of-the-benchmarks)
+   * [Porting Cosette](#porting-cosette)
+   * [Evaluation of Grisette's performance](#evaluation-of-grisettes-performance)
+   * [Comparing the Default Error Encoding with the CBMC Error Encoding](#comparing-the-default-error-encoding-with-the-cbmc-error-encoding)
+   * [Evaluation of the Effectiveness of Memoization](#evaluation-of-the-effectiveness-of-memoization)
+* [Hardware Requirements](#hardware-requirements)
+* [Installation and Sanity Testing](#installation-and-sanity-testing)
+   * [Sanity Check](#sanity-check)
+* [Reproducing the Results](#reproducing-the-results)
+   * [Statistics of the Benchmarks (Table 1)](#statistics-of-the-benchmarks-table-1)
+   * [Porting Cosette](#porting-cosette-1)
+   * [Reproducing Table 2-5](#reproducing-table-2-5)
+* [Additional Artifact Descripton](#additional-artifact-descripton)
+
 ## List of Claims
 ### Statistics of the Benchmarks
 We ported the Rosette benchmarks to Grisette, and collected their statistics.
@@ -43,15 +59,16 @@ This corrsponds to the Section 5.2 in the paper.
 
 We implemented an optimized version of Cosette by changing the types and fixing the type errors, and backported the efficient version to the Rosette.
 
-The Grisette implementation is at [grisette-haskell-legacy/grisette-benchmarks/cosette-optimized-merge](grisette-haskell-legacy/grisette-benchmarks/cosette-optimized-merge), and the Rosette implementation is at [leanette-popl22-artifact/rosette-benchmarks-*/cosette-optimized](leanette-popl22-artifact/rosette-benchmarks-3/cosette-optimized).
+The optimized Grisette implementation is at [grisette-haskell-legacy/grisette-benchmarks/cosette-optimized-merge](grisette-haskell-legacy/grisette-benchmarks/cosette-optimized-merge), and the Rosette implementation is at [leanette-popl22-artifact/rosette-benchmarks-*/cosette-optimized](leanette-popl22-artifact/rosette-benchmarks-3/cosette-optimized).
 
 ### Evaluation of Grisette's performance
 We compared the performance of Grisette with Rosette 3 / 4, and a variant of Grisette with MEG encodings on the benchmarks described above.
 This corrsponds to the Section 5.3 and Table 2 / 3 in the paper.
 
-The implementation of Grisette (MEG) and the corresponding benchmarks are available at [grisette-haskell-legacy/grisette-unordered](grisette-haskell-legacy/grisette-unordered).
+The location for Grisette and Rosette benchmarks are described before in the [Statistics of the Benchmarks](#statistics-of-the-benchmarks) section.
 
-The [grisette-haskell-legacy/grisette-unordered/src](grisette-haskell-legacy/grisette-unordered/src) folder contains the implementation for Grisette (MEG), and the benchmarks are in those folders with the same name as the original Grisette implementation but with the suffix `-unordered`.
+The implementation of Grisette (MEG) and the corresponding benchmarks are available at [grisette-haskell-legacy/grisette-unordered](grisette-haskell-legacy/grisette-unordered).
+The benchmarks are in those folders with the same name as the original Grisette implementation but with the suffix `-unordered`, and the [grisette-haskell-legacy/grisette-unordered/src](grisette-haskell-legacy/grisette-unordered/src) folder contains the implementation for Grisette (MEG).
 
 ### Comparing the Default Error Encoding with the CBMC Error Encoding
 
@@ -68,7 +85,7 @@ The corresponding benchmarks are in the [grisette-haskell-legacy/grisette-cbmcen
 We compared the performance of Grisette programs with and without memoization.
 This corresponds to the Section 5.5 and Table 5 in the paper.
 
-There are several benchmarks with the suffix `-memo` in the [grisette-haskell-legacy/grisette-benchmarks](grisette-haskell-legacy/grisette-benchmarks) folder. The memoized version are in the subfolders without the suffix `-memo`.
+There are several benchmarks with the suffix `-nomemo` in the [grisette-haskell-legacy/grisette-benchmarks](grisette-haskell-legacy/grisette-benchmarks) folder. The memoized version are in the subfolders without the suffix `-memo`.
 
 ## Hardware Requirements
 
@@ -101,7 +118,7 @@ You will be dropped into a bash shell inside the docker container, in the `/work
 There would be three scripts in the `/workspace` directory: `sanity-check.sh`, `line-count.sh` and `run-all.sh`. These would be the main scripts you would use to test your installation and reproduce the results.
 
 After starting the docker image, you can detach from it by pressing `Ctrl+P` and `Ctrl+Q` and reattach to it by running `docker attach grisette-popl23-artifact`.
-You can left the container simply by running `exit`.
+You can leave the container simply by running `exit`.
 If you left the container and want to get back, you can restart it with `docker start -ia grisette-popl23-artifact`. If you want to start with a fresh copy of the image, you can run `docker rm grisette-popl23-artifact` to remove the container and then run `docker run -it --name grisette-popl23-artifact lsrcz/grisette-popl23-artifact:latest` again to start a new container.
 
 ### Sanity Check
@@ -197,8 +214,9 @@ or run `cosette-optimized-merge` with
 ```bash
 stack run cosette-optimized-merge
 ```
+in the `grisette-haskell-legacy` folder.
 
-The performance comparison would be in Table 2 and will be reproduced in the next step.
+The performance comparison are in Table 2 and will be reproduced in the next step.
 
 ### Reproducing Table 2-5
 
@@ -277,3 +295,6 @@ Note that the following output are collected from the docker container and is sl
   \hline
 \end{tabular}
 ```
+
+## Additional Artifact Descripton
+See [ADDITIONAL.md](ADDITIONAL.md) for additional information about the artifact.
